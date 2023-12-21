@@ -1,4 +1,18 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Post, Patch, Body } from '@nestjs/common';
+import { TransactionsService } from './transactions.service';
+import { DepositDto, RollbackDto } from './transaction.dto';
 
 @Controller('transactions')
-export class TransactionsController {}
+export class TransactionsController {
+  constructor(private readonly transactionService: TransactionsService) {}
+
+  @Post('/deposit')
+  async deposit(@Body() depositDto: DepositDto) {
+    return await this.transactionService.deposit(depositDto);
+  }
+
+  @Patch('/rollback')
+  async rollback(@Body() rollbackDto: RollbackDto) {
+    return await this.transactionService.rollback(rollbackDto);
+  }
+}

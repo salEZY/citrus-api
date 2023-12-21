@@ -15,11 +15,11 @@ import { User } from './users/user.entity';
     GamesModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'db',
-      port: 5432,
-      username: 'postgres',
-      password: 'postgres',
-      database: 'postgres',
+      host: process.env.PG_HOST,
+      port: Number(process.env.PG_PORT),
+      username: process.env.PG_USERPASS,
+      password: process.env.PG_USERPASS,
+      database: process.env.PG_DB,
       entities: [User],
       // Remove in prod
       synchronize: true,

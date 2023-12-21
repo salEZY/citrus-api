@@ -31,6 +31,7 @@ export class UsersService {
     try {
       await this.userRepo.save(user);
     } catch (err) {
+      console.log(err);
       throw new HttpException('Not succeded. Unknown error.', 500);
     }
 
