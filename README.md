@@ -17,8 +17,10 @@ API created per deal in the interview: NestJS, PostgreSQL and TypeORM.
 
 I added Docker to the mix for ease of install.
 
-Postman collection is located in root of project.
+Postman collection is located in the root of project.
 
 Accounts, transactions and games all need to be created from Postman.
+
+Authentication middleware provided for transactions and games routes (Bearer JWT)
 
 For any questions, feel free to contact me!
