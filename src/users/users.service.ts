@@ -31,7 +31,6 @@ export class UsersService {
     try {
       await this.userRepo.save(user);
     } catch (err) {
-      console.log(err);
       throw new HttpException('Not succeded. Unknown error.', 500);
     }
 
@@ -60,14 +59,13 @@ export class UsersService {
     let token: string;
     try {
       token = this.jwt.sign(
-        { id: user.id },
+        { id: user.id, username: user.username },
         {
           secret: process.env.JWT_SECRET,
           expiresIn: '1h',
         },
       );
     } catch (err) {
-      console.log(err);
       throw new HttpException('Not succeded. Unknown error.', 500);
     }
 
@@ -75,6 +73,7 @@ export class UsersService {
       status: 201,
       message: 'Successful',
       token,
+      games: user.games,
     };
   }
 }

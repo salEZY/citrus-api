@@ -13,4 +13,7 @@ export class User {
 
   @Column({ default: 0 })
   balance: number;
+
+  @Column('text', { array: true, default: {} })
+  games: string[];
 }

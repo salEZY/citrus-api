@@ -2,9 +2,9 @@ import { Injectable, HttpException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Transaction } from './transaction.entity';
-import { User } from 'src/users/user.entity';
+import { User } from '../users/user.entity';
 import { DepositDto, RollbackDto } from './transaction.dto';
-import { v4 as uuidv4 } from 'uuid';
+import { generateId } from '../util/helpers';
 
 @Injectable()
 export class TransactionsService {
@@ -19,7 +19,7 @@ export class TransactionsService {
       where: { username: body.username },
     });
 
-    const deposit_id = uuidv4();
+    const deposit_id = generateId();
     try {
       // Add amount to users balance
       user.balance += body.amount;
