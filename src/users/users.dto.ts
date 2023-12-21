@@ -1,11 +1,11 @@
 import { IsString, IsNotEmpty } from 'class-validator';
 
 export class UserDto {
-  @IsString()
   @IsNotEmpty()
+  @IsString()
   username: string;
 
-  @IsString()
   @IsNotEmpty()
+  @IsString()
   password: string;
 }
