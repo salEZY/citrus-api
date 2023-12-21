@@ -14,7 +14,7 @@ export class UsersService {
   ) {}
 
   async registration(body: UserDto) {
-    // Check if exist
+    // Check if users exists
     let user = await this.userRepo.findOne({
       where: { username: body.username },
     });
@@ -41,7 +41,7 @@ export class UsersService {
   }
 
   async token(body: UserDto) {
-    // Check if exist
+    // Check if user exists
     let user = await this.userRepo.findOne({
       where: { username: body.username },
     });
