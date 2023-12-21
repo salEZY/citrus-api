@@ -1,19 +1,6 @@
 version: '3.5'
 
 services:
-  db:
-    image: postgres
-    restart: always
-    environment:
-      - POSTGRES_DB=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-    container_name: citrus-db
-    volumes:
-      - ./pgdata:/var/lib/postgresql/data
-    ports:
-      - '5432:5432'
-
   app:
     build:
       context: .
@@ -27,6 +14,21 @@ services:
       - db
     volumes:
       - ./src:/app/src
+    env_file:
+      - ./.env  
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    container_name: citrus-db
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'    
 
   pgadmin:
     image: dpage/pgadmin4

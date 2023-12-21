@@ -12,7 +12,7 @@ export class UsersController {
   }
 
   @Post('/token')
-  async token() {
-    return await this.userService.token();
+  async token(@Body() body: UserDto) {
+    return await this.userService.token(body);
   }
 }
