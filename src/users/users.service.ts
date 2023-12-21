@@ -73,6 +73,7 @@ export class UsersService {
       status: 201,
       message: 'Successful',
       token,
+      balance: user.balance,
       games: user.games,
     };
   }

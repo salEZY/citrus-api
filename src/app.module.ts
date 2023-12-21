@@ -7,6 +7,8 @@ import { TransactionsModule } from './transactions/transactions.module';
 import { GamesModule } from './games/games.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './users/user.entity';
+import { Transaction } from './transactions/transaction.entity';
+import { Game } from './games/game.entity';
 
 @Module({
   imports: [
@@ -20,7 +22,7 @@ import { User } from './users/user.entity';
       username: process.env.PG_USERPASS,
       password: process.env.PG_USERPASS,
       database: process.env.PG_DB,
-      entities: [User],
+      entities: [User, Transaction, Game],
       // Remove in prod
       synchronize: true,
       autoLoadEntities: true,
