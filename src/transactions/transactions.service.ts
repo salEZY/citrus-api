@@ -14,15 +14,18 @@ export class TransactionsService {
   ) {}
 
   async deposit(body: DepositDto) {
+    // Fetch user
     const user = await this.userRepo.findOne({
       where: { username: body.username },
     });
 
     const deposit_id = uuidv4();
     try {
+      // Add amount to users balance
       user.balance += body.amount;
       await this.userRepo.save(user);
 
+      // Create a transaction
       const transaction = new Transaction();
       transaction.amount = body.amount;
       transaction.deposit_id = deposit_id;
@@ -41,15 +44,16 @@ export class TransactionsService {
   }
 
   async rollback(body: RollbackDto) {
+    // Fetch transaction and user
     const transaction = await this.transRepo.findOne({
       where: { deposit_id: body.deposit_id },
     });
-
     const user = await this.userRepo.findOne({
       where: { username: transaction.username },
     });
 
     try {
+      // Remove transaction amount from users balance
       user.balance -= transaction.amount;
       await this.userRepo.save(user);
     } catch (err) {
