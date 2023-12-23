@@ -1,4 +1,4 @@
-import { IsNumber, IsNotEmpty, IsString, Min, IsInt } from 'class-validator';
+import { IsNumber, IsNotEmpty, IsString, Min } from 'class-validator';
 
 export class DepositDto {
   @IsNotEmpty()
