@@ -59,7 +59,7 @@ export class GamesService {
       throw new HttpException(`Not succeded. Customer doesnt exist.`, 404);
 
     if (customer.balance < game.price)
-      throw new HttpException(`Not succeded. Not enough funds.`, 404);
+      throw new HttpException(`Not succeded. Not enough funds.`, 403);
 
     // Fetch game creator
     const creator = await this.userRepo.findOne({
